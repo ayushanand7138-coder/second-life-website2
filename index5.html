@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SECOND LIFE | Reimagining Waste through Art & Memory</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --kraft-bg: #e2d1b0;
+      --paper-cream: #f7f1e3;
+      --ink-dark: #1f1d1a;
+      --forest-green: #1b4332;
+      --terracotta: #b0533c;
+      --amber-gold: #d4a373;
+      --stamp-red: #8b0000;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--kraft-bg);
+      color: var(--ink-dark);
+      font-family: 'Courier Prime', monospace;
+      padding: 20px;
+    }
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--paper-cream);
+      border: 1px solid #d0c0a0;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed var(--ink-dark);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .brand { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--forest-green); text-decoration: none; font-weight: 800; }
+    nav ul { display: flex; list-style: none; gap: 15px; }
+    nav a { text-decoration: none; color: var(--ink-dark); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; padding: 4px 8px; }
+    nav a.active, nav a:hover { background: var(--terracotta); color: #fff; }
+    .hero { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; margin: 40px 0; }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--forest-green); line-height: 1.15; margin-bottom: 20px; }
+    .btn { display: inline-block; background: var(--terracotta); color: #fff; padding: 12px 24px; font-family: 'Special Elite'; text-decoration: none; border: 2px solid var(--ink-dark); box-shadow: 3px 3px 0 var(--ink-dark); }
+    .btn:hover { background: var(--forest-green); }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 40px; }
+    .card { background: #fff; border: 1px solid #c2b293; padding: 20px; text-decoration: none; color: inherit; }
+    .card:hover { border-color: var(--terracotta); }
+    footer { border-top: 2px dashed var(--ink-dark); padding-top: 20px; margin-top: 50px; text-align: center; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a href="index.html" class="brand">SECOND LIFE</a>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="museum.html">Digital Museum</a></li>
+          <li><a href="submit.html">Submit Object</a></li>
+          <li><a href="space.html">Physical Space</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h1>An object may lose its purpose, but never its value.</h1>
+        <p style="margin-bottom:25px;">SECOND LIFE is a sustainability, art, and storytelling venture that transforms unwanted items into art and functional design while preserving their origin stories.</p>
+        <a href="museum.html" class="btn">ENTER DIGITAL MUSEUM &rarr;</a>
+      </div>
+      <div style="background:#fff; padding:20px; border:1px solid #ccc; text-align:center;">
+        <div style="background:#dcd0b8; height:220px; display:flex; align-items:center; justify-content:center; font-family:'Special Elite';">
+          [ EXHIBIT #0481: OAK MILL LAMP ]
+        </div>
+      </div>
+    </section>
+
+    <div class="grid-4">
+      <a href="museum.html" class="card">
+        <h3 style="font-family:'Playfair Display'; color:var(--terracotta);">🖼️ Digital Museum</h3>
+        <p style="font-size:0.85rem; margin-top:8px;">Browse transformed artifacts with before-and-after logs and story tags.</p>
+      </a>
+      <a href="submit.html" class="card">
+        <h3 style="font-family:'Playfair Display'; color:var(--terracotta);">📦 Submit an Object</h3>
+        <p style="font-size:0.85rem; margin-top:8px;">Donate unwanted items along with their personal history and photos.</p>
+      </a>
+      <a href="workshops.html" class="card">
+        <h3 style="font-family:'Playfair Display'; color:var(--terracotta);">🛠️ Workshops & CSR</h3>
+        <p style="font-size:0.85rem; margin-top:8px;">Participate in hands-on circular design sessions and corporate retreats.</p>
+      </a>
+      <a href="shop.html" class="card">
+        <h3 style="font-family:'Playfair Display'; color:var(--terracotta);">🛍️ Upcycled Shop</h3>
+        <p style="font-size:0.85rem; margin-top:8px;">Acquire one-of-a-kind functional creations crafted from reclaimed waste.</p>
+      </a>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 SECOND LIFE Circular Ventures. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Login | SECOND LIFE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --kraft-bg: #e2d1b0;
+      --paper-cream: #f7f1e3;
+      --ink-dark: #1f1d1a;
+      --forest-green: #1b4332;
+      --terracotta: #b0533c;
+      --amber-gold: #d4a373;
+      --stamp-red: #8b0000;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--kraft-bg);
+      color: var(--ink-dark);
+      font-family: 'Courier Prime', monospace;
+      padding: 20px;
+    }
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--paper-cream);
+      border: 1px solid #d0c0a0;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed var(--ink-dark);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .brand { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--forest-green); text-decoration: none; font-weight: 800; }
+    nav ul { display: flex; list-style: none; gap: 15px; flex-wrap: wrap; }
+    nav a { text-decoration: none; color: var(--ink-dark); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; padding: 4px 8px; }
+    nav a.active, nav a:hover { background: var(--terracotta); color: #fff; }
+    
+    .auth-container {
+      max-width: 520px;
+      margin: 40px auto;
+      background: #faf5eb;
+      border: 2px dashed var(--terracotta);
+      padding: 35px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    }
+    
+    .tab-switch {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      border-bottom: 2px solid var(--ink-dark);
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 10px;
+      font-family: 'Special Elite', cursive;
+      font-size: 1rem;
+      background: #e8dcc4;
+      border: 1px solid var(--ink-dark);
+      border-bottom: none;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: var(--paper-cream);
+      border-top: 3px solid var(--terracotta);
+      font-weight: bold;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: bold; margin-bottom: 6px; font-size: 0.9rem; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 12px;
+      font-family: 'Courier Prime', monospace;
+      border: 1px solid var(--ink-dark);
+      background: #fff;
+    }
+
+    .btn {
+      width: 100%;
+      background: var(--terracotta);
+      color: #fff;
+      padding: 14px;
+      font-family: 'Special Elite', cursive;
+      font-size: 1.05rem;
+      border: 2px solid var(--ink-dark);
+      box-shadow: 3px 3px 0 var(--ink-dark);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: var(--forest-green); transform: translate(-2px, -2px); }
+
+    .session-badge {
+      background: #fff;
+      border: 2px dashed var(--forest-green);
+      padding: 20px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    footer { border-top: 2px dashed var(--ink-dark); padding-top: 20px; margin-top: 50px; text-align: center; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a href="index.html" class="brand">SECOND LIFE</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="museum.html">Digital Museum</a></li>
+          <li><a href="submit.html">Submit Object</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html" class="active">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h1 style="font-family:'Playfair Display'; color:var(--forest-green); font-size:2.5rem; text-align:center;">Member Access Portal</h1>
+    <p style="text-align:center; color:#555; margin-top:5px;">Sign in to track your donated stories, access workshop passes, or manage corporate partnerships.</p>
+
+    <div class="auth-container">
+      <div class="tab-switch">
+        <button class="tab-btn active" onclick="switchAuthMode('login', this)">LOG IN</button>
+        <button class="tab-btn" onclick="switchAuthMode('register', this)">REGISTER</button>
+      </div>
+
+      <form id="auth-form" onsubmit="handleAuth(event)">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="email" required placeholder="name@example.com">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" required placeholder="••••••••">
+        </div>
+        <div class="form-group" id="role-group" style="display:none;">
+          <label>Account Role</label>
+          <select id="role">
+            <option value="Community Donor">Community Donor & Storyteller</option>
+            <option value="Resident Artist">Resident Artist / Maker</option>
+            <option value="Corporate Partner">Corporate CSR Representative</option>
+            <option value="School Educator">Educator / STEAM Partner</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn" id="submit-btn">ACCESS YOUR PORTAL &rarr;</button>
+      </form>
+
+      <div class="session-badge" id="session-card">
+        <h3 style="font-family:'Playfair Display'; color:var(--forest-green);" id="user-display">Logged In</h3>
+        <p style="font-size:0.85rem; margin-top:5px;" id="role-display">Role: Community Member</p>
+        <button onclick="logout()" style="margin-top:15px; background:var(--stamp-red); color:#fff; border:none; padding:8px 14px; font-family:'Special Elite'; cursor:pointer;">LOG OUT</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 SECOND LIFE Circular Ventures. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    let mode = 'login';
+
+    function switchAuthMode(selectedMode, btn) {
+      mode = selectedMode;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const roleGroup = document.getElementById('role-group');
+      const submitBtn = document.getElementById('submit-btn');
+
+      if (mode === 'register') {
+        roleGroup.style.display = 'block';
+        submitBtn.innerText = 'CREATE ACCOUNT &rarr;';
+      } else {
+        roleGroup.style.display = 'none';
+        submitBtn.innerText = 'ACCESS YOUR PORTAL &rarr;';
+      }
+    }
+
+    function handleAuth(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const role = document.getElementById('role').value;
+
+      document.getElementById('auth-form').style.display = 'none';
+      const sessionCard = document.getElementById('session-card');
+      sessionCard.style.display = 'block';
+
+      document.getElementById('user-display').innerText = 'Welcome, ' + email.split('@')[0] + '!';
+      document.getElementById('role-display').innerText = 'Active Role: ' + (mode === 'register' ? role : 'Community Member');
+    }
+
+    function logout() {
+      document.getElementById('auth-form').style.display = 'block';
+      document.getElementById('session-card').style.display = 'none';
+      document.getElementById('auth-form').reset();
+    }
+  </script>
+</body>
+</html>

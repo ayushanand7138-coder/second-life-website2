@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submit an Object | SECOND LIFE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root { --kraft-bg: #e2d1b0; --paper-cream: #f7f1e3; --ink-dark: #1f1d1a; --forest-green: #1b4332; --terracotta: #b0533c; }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { background: var(--kraft-bg); color: var(--ink-dark); font-family: 'Courier Prime', monospace; padding: 20px; }
+    .wrapper { max-width: 1200px; margin: 0 auto; background: var(--paper-cream); border: 1px solid #d0c0a0; padding: 40px; }
+    header { display: flex; justify-content: space-between; border-bottom: 2px dashed var(--ink-dark); padding-bottom: 20px; margin-bottom: 30px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--forest-green); text-decoration: none; font-weight: 800; }
+    nav ul { display: flex; list-style: none; gap: 15px; }
+    nav a { text-decoration: none; color: var(--ink-dark); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; padding: 4px 8px; }
+    nav a.active, nav a:hover { background: var(--terracotta); color: #fff; }
+    .form-box { background: #faf5eb; border: 2px dashed var(--terracotta); padding: 30px; max-width: 700px; margin-top: 25px; }
+    .group { margin-bottom: 20px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; }
+    input, textarea { width: 100%; padding: 10px; font-family: 'Courier Prime'; border: 1px solid var(--ink-dark); }
+    .btn { background: var(--terracotta); color: #fff; padding: 12px 24px; font-family: 'Special Elite'; border: 2px solid var(--ink-dark); cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a href="index.html" class="brand">SECOND LIFE</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="museum.html">Digital Museum</a></li>
+          <li><a href="submit.html" class="active">Submit Object</a></li>
+          <li><a href="space.html">Physical Space</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h1 style="font-family:'Playfair Display'; color:var(--forest-green); font-size:2.5rem;">Submit an Unwanted Object & Memory</h1>
+    <p>Do not let your discarded objects end up in a landfill. Share their origin story, and our resident artists will transform them.</p>
+
+    <div class="form-box">
+      <form onsubmit="alert('Thank you! Your object submission has been logged under Reference ID: SL-INTAKE-' + Math.floor(1000+Math.random()*9000)); return false;">
+        <div class="group"><label>Your Name / Organization</label><input type="text" required placeholder="e.g. Eleanor Vance"></div>
+        <div class="group"><label>Object Title & Material</label><input type="text" required placeholder="e.g. Broken Wooden Grandfather Clock Frame"></div>
+        <div class="group"><label>The Story & Memory Behind It</label><textarea rows="4" required placeholder="Who owned it? What memories are attached to it?"></textarea></div>
+        <div class="group"><label>Upload Photo</label><input type="file" accept="image/*"></div>
+        <button type="submit" class="btn">SUBMIT OBJECT FOR INTAKE &rarr;</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

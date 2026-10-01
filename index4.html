@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Digital Museum | SECOND LIFE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Playfair+Display:wght@700;800&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root { --kraft-bg: #e2d1b0; --paper-cream: #f7f1e3; --ink-dark: #1f1d1a; --forest-green: #1b4332; --terracotta: #b0533c; }
+    * { box-sizing: border-box; margin:0; padding:0; }
+    body { background: var(--kraft-bg); color: var(--ink-dark); font-family: 'Courier Prime', monospace; padding: 20px; }
+    .wrapper { max-width: 1200px; margin: 0 auto; background: var(--paper-cream); border: 1px solid #d0c0a0; padding: 40px; }
+    header { display: flex; justify-content: space-between; border-bottom: 2px dashed var(--ink-dark); padding-bottom: 20px; margin-bottom: 30px; }
+    .brand { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--forest-green); text-decoration: none; font-weight: 800; }
+    nav ul { display: flex; list-style: none; gap: 15px; }
+    nav a { text-decoration: none; color: var(--ink-dark); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; padding: 4px 8px; }
+    nav a.active, nav a:hover { background: var(--terracotta); color: #fff; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 30px; }
+    .exhibit-card { background: #fff; border: 1px solid #c2b293; padding: 20px; }
+    .tag { font-family: 'Special Elite'; color: var(--terracotta); font-size: 0.85rem; }
+    .img-box { background: #e8ded0; border: 1px solid #ccc; height: 180px; display: flex; align-items: center; justify-content: center; margin: 15px 0; font-family: 'Special Elite'; text-align: center; padding: 10px; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a href="index.html" class="brand">SECOND LIFE</a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="museum.html" class="active">Digital Museum</a></li>
+          <li><a href="submit.html">Submit Object</a></li>
+          <li><a href="space.html">Physical Space</a></li>
+          <li><a href="workshops.html">Workshops</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <h1 style="font-family:'Playfair Display'; color:var(--forest-green); font-size:2.5rem;">Digital Museum Gallery</h1>
+    <p>Each transformed artifact is cataloged with its origin story, material composition, and diverted landfill weight.</p>
+
+    <div class="grid-3">
+      <div class="exhibit-card">
+        <span class="tag">TAG ID: SL-0481 • 4.2 kg Diverted</span>
+        <h2 style="font-family:'Playfair Display'; margin-top:5px;">Oak Flour Mill Desk Lamp</h2>
+        <div class="img-box">[ TRANSFORMATION: 1890s Mill Floorboard turned LED Desk Lamp ]</div>
+        <p style="font-size:0.85rem;"><strong>Donor Memory:</strong> "Flooring from my grandfather's wheat mill before demolition in 1968."</p>
+      </div>
+      <div class="exhibit-card">
+        <span class="tag">TAG ID: SL-1092 • 1.8 kg Diverted</span>
+        <h2 style="font-family:'Playfair Display'; margin-top:5px;">Sailcloth & Denim Tote</h2>
+        <div class="img-box">[ TRANSFORMATION: Retired Coastguard Sail turned Crossbody Tote ]</div>
+        <p style="font-size:0.85rem;"><strong>Donor Memory:</strong> "Retired marine sail that survived 3 major Atlantic ocean storms."</p>
+      </div>
+      <div class="exhibit-card">
+        <span class="tag">TAG ID: SL-0883 • 8.5 kg Diverted</span>
+        <h2 style="font-family:'Playfair Display'; margin-top:5px;">Kinetic Bicycle Rim Wall Art</h2>
+        <div class="img-box">[ TRANSFORMATION: Discarded Bike Rims turned Solar Kinetic Installation ]</div>
+        <p style="font-size:0.85rem;"><strong>Donor Memory:</strong> "Bent rims accumulated across 5 years of community bike repairs."</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

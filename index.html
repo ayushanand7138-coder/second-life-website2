@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Control Center | SECOND LIFE</title>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --kraft-bg: #e2d1b0;
+      --paper-cream: #f7f1e3;
+      --ink-dark: #1f1d1a;
+      --forest-green: #1b4332;
+      --terracotta: #b0533c;
+      --amber-gold: #d4a373;
+      --stamp-red: #8b0000;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--kraft-bg);
+      color: var(--ink-dark);
+      font-family: 'Courier Prime', monospace;
+      padding: 20px;
+    }
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: var(--paper-cream);
+      border: 1px solid #d0c0a0;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px dashed var(--ink-dark);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .brand { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--forest-green); text-decoration: none; font-weight: 800; }
+    nav ul { display: flex; list-style: none; gap: 15px; flex-wrap: wrap; }
+    nav a { text-decoration: none; color: var(--ink-dark); font-weight: bold; text-transform: uppercase; font-size: 0.85rem; padding: 4px 8px; }
+    nav a.active, nav a:hover { background: var(--terracotta); color: #fff; }
+
+    .admin-badge {
+      background: var(--stamp-red);
+      color: #fff;
+      font-family: 'Special Elite', cursive;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      transform: rotate(-2deg);
+      display: inline-block;
+    }
+
+    /* Auth Box */
+    .login-box {
+      max-width: 450px;
+      margin: 50px auto;
+      background: #faf5eb;
+      border: 2px dashed var(--terracotta);
+      padding: 30px;
+    }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.85rem; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      font-family: 'Courier Prime', monospace;
+      border: 1px solid var(--ink-dark);
+      background: #fff;
+    }
+    .btn {
+      background: var(--terracotta);
+      color: #fff;
+      padding: 10px 20px;
+      font-family: 'Special Elite', cursive;
+      border: 2px solid var(--ink-dark);
+      cursor: pointer;
+    }
+    .btn:hover { background: var(--forest-green); }
+
+    /* Dashboard Grid */
+    .admin-dashboard { display: none; }
+    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 25px; }
+
+    .card { background: #fff; border: 1px solid #c2b293; padding: 25px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+    .table-queue {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 0.85rem;
+    }
+    .table-queue th, .table-queue td {
+      border: 1px solid #d0c0a0;
+      padding: 8px;
+      text-align: left;
+    }
+    .table-queue th { background: #e8ded0; }
+
+    footer { border-top: 2px dashed var(--ink-dark); padding-top: 20px; margin-top: 50px; text-align: center; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <a href="index.html" class="brand">SECOND LIFE <span class="admin-badge">OWNER PORTAL</span></a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="museum.html">Digital Museum</a></li>
+          <li><a href="submit.html">Submit Object</a></li>
+          <li><a href="admin.html" class="active">Owner CMS</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- STEP 1: OWNER LOGIN -->
+    <div id="login-section" class="login-box">
+      <h2 style="font-family:'Playfair Display'; color:var(--forest-green); margin-bottom:10px;">Owner Verification</h2>
+      <p style="font-size:0.85rem; margin-bottom:20px;">Enter owner passkey or an email tagged with Owner Access.</p>
+      
+      <form onsubmit="verifyOwner(event)">
+        <div class="form-group">
+          <label>Owner Email Address</label>
+          <input type="email" id="owner-email" required placeholder="owner@secondlife.org">
+        </div>
+        <div class="form-group">
+          <label>Owner Passcode (Default: admin2026)</label>
+          <input type="password" id="owner-pass" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn" style="width:100%;">ENTER CONTROL CENTER &rarr;</button>
+      </form>
+    </div>
+
+    <!-- STEP 2: OWNER DASHBOARD (Visible only to Owners) -->
+    <div id="admin-section" class="admin-dashboard">
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #000; padding-bottom:15px;">
+        <div>
+          <h1 style="font-family:'Playfair Display'; color:var(--forest-green);">Website Control Center</h1>
+          <p style="font-size:0.85rem;" id="active-owner-label">Logged in as: Owner</p>
+        </div>
+        <button onclick="logoutOwner()" style="background:var(--stamp-red); color:#fff; border:none; padding:8px 14px; font-family:'Special Elite'; cursor:pointer;">LOGOUT</button>
+      </div>
+
+      <div class="admin-grid">
+        <!-- Panel 1: Review & Approve Submissions -->
+        <div class="card">
+          <h3 style="font-family:'Playfair Display'; color:var(--terracotta);">📥 Pending Object Submissions</h3>
+          <p style="font-size:0.8rem; color:#555;">Review donations submitted by the community.</p>
+
+          <table class="table-queue" id="queue-table">
+            <thead>
+              <tr>
+                <th>Donor</th>
+                <th>Item</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Sarah J.</td>
+                <td>Vintage Brass Clock Casing</td>
+                <td><button onclick="approveItem(this)" style="background:var(--forest-green); color:#fff; border:none; padding:3px 6px; cursor:pointer;">Approve</button></td>
+              </tr>
+              <tr>
+                <td>Mark T.</td>
+                <td>Rotting Hardwood Beams</td>
+                <td><button onclick="approveItem(this)" style="background:var(--forest-green); color:#fff; border:none; padding:3px 6px; cursor:pointer;">Approve</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Panel 2: Add New Museum Exhibit -->
+        <div class="card">
+          <h3 style="font-family:'Playfair Display'; color:var(--terracotta);">🏛️ Publish New Museum Exhibit</h3>
+          <form onsubmit="publishExhibit(event)" style="margin-top:10px;">
+            <div class="form-group"><label>Exhibit Title</label><input type="text" required id="ex-title" placeholder="e.g. Kinetic Bike Wheel Art"></div>
+            <div class="form-group"><label>Assign Tag ID</label><input type="text" required id="ex-tag" placeholder="e.g. SL-2041"></div>
+            <div class="form-group"><label>Diverted Weight (kg)</label><input type="number" required id="ex-weight" placeholder="e.g. 5.5"></div>
+            <div class="form-group"><label>Original Memory</label><textarea rows="2" required id="ex-memory" placeholder="Donor's memory..."></textarea></div>
+            <button type="submit" class="btn">PUBLISH TO MUSEUM &rarr;</button>
+          </form>
+        </div>
+
+        <!-- Panel 3: Site Impact Metrics Editor -->
+        <div class="card">
+          <h3 style="font-family:'Playfair Display'; color:var(--terracotta);">📊 Live Impact Metrics Editor</h3>
+          <form onsubmit="updateMetrics(event)" style="margin-top:10px;">
+            <div class="form-group"><label>Total Waste Diverted (kg)</label><input type="text" id="m-waste" value="14,280 kg"></div>
+            <div class="form-group"><label>Stories Cataloged</label><input type="text" id="m-stories" value="1,420+"></div>
+            <div class="form-group"><label>Art Transformations</label><input type="text" id="m-art" value="380"></div>
+            <button type="submit" class="btn">UPDATE SITE STATS</button>
+          </form>
+        </div>
+
+        <!-- Panel 4: Manage Owner Team Permissions -->
+        <div class="card">
+          <h3 style="font-family:'Playfair Display'; color:var(--terracotta);">👑 Manage Owner Permissions</h3>
+          <p style="font-size:0.8rem; color:#555;">Add email addresses of partners who can manage the site.</p>
+          
+          <form onsubmit="addOwnerEmail(event)" style="margin-top:10px;">
+            <div class="form-group"><label>New Owner Email</label><input type="email" id="new-owner-email" required placeholder="partner@secondlife.org"></div>
+            <button type="submit" class="btn">GRANT OWNER ACCESS</button>
+          </form>
+
+          <ul id="owner-list" style="margin-top:15px; font-size:0.85rem; padding-left:20px;">
+            <li>owner@secondlife.org (Primary)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2026 SECOND LIFE Circular Ventures. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Allowed Owner emails list
+    let allowedOwners = JSON.parse(localStorage.getItem('sl_owners')) || ['owner@secondlife.org'];
+
+    function verifyOwner(e) {
+      e.preventDefault();
+      const email = document.getElementById('owner-email').value.toLowerCase();
+      const pass = document.getElementById('owner-pass').value;
+
+      // Passcode "admin2026" or email in allowed list
+      if (pass === 'admin2026' || allowedOwners.includes(email)) {
+        document.getElementById('login-section').style.display = 'none';
+        document.getElementById('admin-section').style.display = 'block';
+        document.getElementById('active-owner-label').innerText = 'Logged in as: ' + email;
+      } else {
+        alert('Access Denied: Incorrect passcode or email not tagged with Owner permissions.');
+      }
+    }
+
+    function logoutOwner() {
+      document.getElementById('admin-section').style.display = 'none';
+      document.getElementById('login-section').style.display = 'block';
+    }
+
+    function approveItem(btn) {
+      const row = btn.parentElement.parentElement;
+      row.style.background = '#d4edda';
+      btn.innerText = 'Approved ✓';
+      btn.disabled = true;
+    }
+
+    function publishExhibit(e) {
+      e.preventDefault();
+      alert('Exhibit Published! Tag ID ' + document.getElementById('ex-tag').value + ' is now live in the Digital Museum.');
+      e.target.reset();
+    }
+
+    function updateMetrics(e) {
+      e.preventDefault();
+      alert('Impact metrics updated across the entire website!');
+    }
+
+    function addOwnerEmail(e) {
+      e.preventDefault();
+      const newEmail = document.getElementById('new-owner-email').value.toLowerCase();
+      if (!allowedOwners.includes(newEmail)) {
+        allowedOwners.push(newEmail);
+        localStorage.setItem('sl_owners', JSON.stringify(allowedOwners));
+        
+        const list = document.getElementById('owner-list');
+        const li = document.createElement('li');
+        li.innerText = newEmail + ' (Tagged Owner)';
+        list.appendChild(li);
+
+        alert(newEmail + ' has been tagged with Owner Access!');
+        document.getElementById('new-owner-email').value = '';
+      }
+    }
+  </script>
+</body>
+</html>
